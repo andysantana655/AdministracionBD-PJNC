@@ -1,0 +1,37 @@
+- Crear Base de Datos
+CREATE DATABASE Biblioteca;
+GO
+USE Biblioteca;
+GO
+
+-- Crear Tabla Libros
+CREATE TABLE Libros (
+    LibroID INT PRIMARY KEY IDENTITY(1,1),
+    Titulo VARCHAR(255) NOT NULL,
+    Autor VARCHAR(255) NOT NULL,
+    AñoPublicacion INT,
+    Genero VARCHAR(100)
+);
+GO
+
+-- Crear Tabla Socios
+CREATE TABLE Socios (
+    SocioID INT PRIMARY KEY IDENTITY(1,1),
+    Nombre VARCHAR(100) NOT NULL,
+    Apellidos VARCHAR(100) NOT NULL,
+    Direccion VARCHAR(255),
+    Telefono VARCHAR(20)
+);
+GO
+
+-- Crear Tabla Prestamos
+CREATE TABLE Prestamos (
+    PrestamoID INT PRIMARY KEY IDENTITY(1,1),
+    LibroID INT NOT NULL,
+    SocioID INT NOT NULL,
+    FechaPrestamo DATE NOT NULL,
+    FechaDevolucion DATE,
+    FOREIGN KEY (LibroID) REFERENCES Libros(LibroID),
+    FOREIGN KEY (SocioID) REFERENCES Socios(SocioID)
+);
+GO
